@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const { config } = require('./config/server.config')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-
+const {router : userRouter} = require("./routes/user.routes")
 
 
 const PORT = config.appPort
@@ -25,6 +25,7 @@ const app = express()
             app.use(express.urlencoded())
             app.use(cookieParser())
 
+            app.use("/api/V1/users" , userRouter)  //routes declaration
 
             app.listen(PORT, () => {
                 console.log(`Server listening on port ${PORT}`);
